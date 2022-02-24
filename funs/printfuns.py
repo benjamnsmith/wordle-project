@@ -16,21 +16,15 @@ def printKnown(lst):
     for el in lst:
         print("%s" % (el), end = " ")
 
-def printRecs():
-    global recs
-    here = recs.copy()
-    if countRecs(here) > 20:
-        here = filterRecs()
-    message = False
-    iter = 0
-    for r in here:
-        if recs[r] > 0:
-            if not message:
-                print("Here are my recommendations:")
-                message = True
-            print(r, end = " ")
-            iter += 1
-            if iter % 9 == 0:
-                print()
-                iter = 0
+
+
+def printWelcomeMessage(word):
+    print("\n========= GET LIVE WORDLE RECOMMENDATIONS =========\n")
+    print("  We will give you live wordle recommendations")
+    print("  all you have to do is come up with a starting")
+    print("  word!")
     print()
+    print("  Need a good starting word? Try: %s" % (word))
+
+def line():
+    print("---------------------------------------------------")

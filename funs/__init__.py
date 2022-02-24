@@ -1,2 +1,2 @@
-import printfuns, recfuns
+import funs.printfuns, funs.recfuns
 
