@@ -108,3 +108,4 @@ if mode == 0:
 
 elif mode == 1:
     #tkinter time
+    pass
