@@ -1,3 +1,4 @@
+from unittest.util import sorted_list_difference
 import nltk
 word_list = [w for w in nltk.corpus.words.words('en') if len(w) == 5 and w.islower()]
 words = set(word_list)
@@ -48,18 +49,13 @@ def pass_two():
 # ie. if we know there is not an 'h' in position 4, remove all words that have an 'h' there
 def pass_three(confirmed):
     global recs
-    try:
-        for rec in recs:
-            for letter in confirmed:
-                places = len(confirmed[letter])
-                for i in range(places):
-                    curlist = confirmed[letter]
-                    if rec[curlist[i]] == letter:
-                        recs[rec] = -1
-    except Exception as e:
-        pass
-        #print(e) This is janky but I don't want to deal with it rn
-        # TO RECREATE: LYUCEE (00100), POUCH (00011)
+    for rec in recs:
+        for letter in confirmed:
+            places = len(confirmed[letter])
+            for i in range(places):
+                curlist = confirmed[letter]
+                if rec[curlist[i]] == letter:
+                    recs[rec] = -1
 
 def getRecommendations():
     global confirmed_not
@@ -69,13 +65,9 @@ def getRecommendations():
 
     pass_zero(confirmed_not)
 
-    print("0")
     pass_one(confirmed)
-    print("1")
     pass_two()
-    print("2")
     pass_three(confirmed)
-    print("3")
     #print("Recommendations length: %d" % countRecs(recs))
 
 def countRecs(dic):
@@ -107,7 +99,6 @@ def filterRecs():
     return tmp
 
 def updateConf(case, letter, val):
-    print("Update conf got cxalled")
     if case == 0:
         goal[val] = 0
         if ((letter not in confirmed_not) and (letter not in confirmed)):
@@ -117,7 +108,7 @@ def updateConf(case, letter, val):
         if (letter not in confirmed):
             confirmed[letter] = [val]
         else:
-            confirmed[letter].append(letter)
+            confirmed[letter].append(val)
     if case == 2:
         ans[val] = letter
         goal[val] = 2
@@ -153,3 +144,24 @@ def printRecs():
                 print()
                 iter = 0
     print()
+
+def printAlpha():
+    global recs
+    here = recs.copy()
+
+    try:
+
+        sorted = list(here.items()).sort()
+        for elem in sorted:
+            if recs[elem] > 0:
+                if not message:
+                    print("Here are my recommendations:")
+                    message = True
+                print(elem, end = " ")
+                iter += 1
+                if iter % 9 == 0:
+                    print()
+                    iter = 0
+    except Exception as e:
+        print(e)
+    
