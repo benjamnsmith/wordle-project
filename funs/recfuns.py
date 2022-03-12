@@ -1,4 +1,3 @@
-from unittest.util import sorted_list_difference
 import nltk
 word_list = [w for w in nltk.corpus.words.words('en') if len(w) == 5 and w.islower()]
 words = set(word_list)
@@ -68,7 +67,6 @@ def getRecommendations():
     pass_one(confirmed)
     pass_two()
     pass_three(confirmed)
-    #print("Recommendations length: %d" % countRecs(recs))
 
 def countRecs(dic):
     total = 0
@@ -125,9 +123,6 @@ def removeDoubles(double_letter):
 def printRecs():
     global recs
 
-    print("Current recommendation length:       %d" % countRecs(recs))
-    #print("Beginning number of recommendations: 8497 ")
-
     here = recs.copy()
     if countRecs(here) > 20:
         here = filterRecs()
@@ -136,11 +131,11 @@ def printRecs():
     for r in here:
         if recs[r] > 0:
             if not message:
-                print("Here are my recommendations:")
+                print("I have %d recommendations for you:\n" % countRecs(recs))
                 message = True
             print(r, end = " ")
             iter += 1
-            if iter % 9 == 0:
+            if iter % 8 == 0:
                 print()
                 iter = 0
     print()
@@ -165,3 +160,14 @@ def printAlpha():
     except Exception as e:
         print(e)
     
+
+
+''' 
+Something else is broken:
+bough (01100)
+scour(00221)
+trout(02220)
+proud(22222)
+
+Maybe not, proud just isn't in the word list??
+'''

@@ -19,7 +19,7 @@ def printKnown(lst):
 
 
 def printWelcomeMessage(word):
-    print("\n========= GET LIVE WORDLE RECOMMENDATIONS =========\n")
+    print("\n======== GET LIVE WORDLE RECOMMENDATIONS ========\n")
     print("  We will give you live wordle recommendations")
     print("  all you have to do is come up with a starting")
     print("  word!")
@@ -27,4 +27,4 @@ def printWelcomeMessage(word):
     print("  Need a good starting word? Try: %s" % (word))
 
 def line():
-    print("---------------------------------------------------")
+    print("--------------------------------------------")
