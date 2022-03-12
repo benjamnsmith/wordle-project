@@ -42,6 +42,15 @@ if mode == 0:
             # Message prompt for inputting a word
             print("---------------------------------------------------")
             guess = input("Please input your guess: ")
+            if len(guess) != 5:
+                if guess == "quit":
+                    raise KeyboardInterrupt
+                print("\nPlease enter a five letter word")
+                continue
+            if not guess.isalpha():
+                print("\nPlease only use alphabetic characters") 
+                continue
+            guess = guess.lower()
             print("Please tell us how your word performed:")
             print("0 - not present\n1 - present, wrong location\n2 - present, right location\n")
 
