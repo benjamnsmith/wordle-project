@@ -1,3 +1,7 @@
+'''
+FIRST ATTEMPT, BEFORE MODULE SPLITTING AND BUG SQUASHING
+'''
+
 import nltk
 from random import random
 
