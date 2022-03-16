@@ -81,6 +81,16 @@ def initRecs():
     for w in words:
         recs[w] = 1
 
+    global confirmed
+    global confirmed_not
+    global goal
+    global ans
+
+    confirmed = {}
+    confirmed_not = []
+    goal = [-1, -1, -1, -1, -1]
+    ans = [' ', ' ', ' ', ' ', ' ']
+
 def filterRecs():
     global recs
 
@@ -98,9 +108,14 @@ def filterRecs():
 
 def updateConf(case, letter, val):
     if case == 0:
-        goal[val] = 0
-        if ((letter not in confirmed_not) and (letter not in confirmed)):
-           confirmed_not.append(letter)
+        try:
+            goal[val] = 0
+            if ((letter not in confirmed_not) and (letter not in confirmed)):
+                confirmed_not.append(letter)
+        except Exception as e:
+            print(e)
+            print(goal)
+            print(val)
     if case == 1:
         goal[val] = 1
         if (letter not in confirmed):
@@ -159,6 +174,26 @@ def printAlpha():
                     iter = 0
     except Exception as e:
         print(e)
+
+def recs4TK():
+    global recs
+
+    here = recs.copy()
+
+    ret = ""
+    lst = []
+    iter = 0
+    for r in here:
+        if here[r] > 0:
+            lst.append(r)
+    lst.sort()
+    for word in lst:
+        ret += word + "  "
+        iter += 1
+        if iter % 5 == 0:
+            ret += "\n"
+    return ret
+
     
 
 
